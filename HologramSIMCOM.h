@@ -16,12 +16,12 @@ class HologramSIMCOM {
 public:
 
     // Pre-setup - set globals -----------------------------------------
-    HologramSIMCOM(const int txPin,const int rxPin,const int resetPin,const char* deviceKey)
-            :serialHologram(txPin, rxPin){
+    HologramSIMCOM(HardwareSerial& serial,const int resetPin,const char* deviceKey)
+            :serialHologram(serial){
         _DEVICEKEY = deviceKey;
         _RESETPIN = resetPin;
     };
-    SoftwareSerial serialHologram;
+     HardwareSerial& serialHologram;
 
     // Setup Methods ----------------------------------------------------
     bool begin(const int baud); // Must pass baud to setup module

@@ -14,7 +14,7 @@ PUBLIC
 
 bool HologramSIMCOM::begin(const int baud) {
     // Reset modem
-    pinMode(_RESETPIN, OUTPUT);
+   /* pinMode(_RESETPIN, OUTPUT);
     digitalWrite(_RESETPIN, HIGH);
     delay(10);
     digitalWrite(_RESETPIN, LOW);
@@ -22,7 +22,7 @@ bool HologramSIMCOM::begin(const int baud) {
     digitalWrite(_RESETPIN, HIGH);
 
     delay(10000); // wait for modem to startup
-
+*/
     bool initiated = false;
 
     // Start serials
@@ -143,6 +143,8 @@ bool HologramSIMCOM::cellService() {
     int gprs = _writeCommand("AT+CGATT?\r\n", 10, "+CGATT: 1", "ERROR");
     int pdp = _writeCommand("AT+CIPSTATUS?\r\n", 10, "IP", "DEACT");
     int mux = _writeCommand("AT+CIPMUX?\r\n", 10, "+CIPMUX: 1", "+CIPMUX: 0");
+    delay(2000);
+
     int ip = _writeCommand("AT+CIFSR\r\n", 1, ".", "ERROR");
     int sig = cellStrength();
 
@@ -434,7 +436,7 @@ bool HologramSIMCOM::_connectNetwork() {
             Serial.println(F("ERROR: failed at +CIICR"));
             break;
         }
-
+        delay(2000);
         // Get local IP address
         if(_writeCommand("AT+CIFSR\r\n", 1, ".", "ERROR") != 2) {
             Serial.println(F("ERROR: failed at +CIFSR"));

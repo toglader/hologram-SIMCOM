@@ -10,7 +10,7 @@
 #define __HologramSIMCOM_H__
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 
 class HologramSIMCOM {
 public:
@@ -21,7 +21,7 @@ public:
         _DEVICEKEY = deviceKey;
         _RESETPIN = resetPin;
     };
-     HardwareSerial& serialHologram;
+    HardwareSerial& serialHologram;
 
     // Setup Methods ----------------------------------------------------
     bool begin(const int baud); // Must pass baud to setup module

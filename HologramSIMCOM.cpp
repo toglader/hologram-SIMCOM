@@ -30,8 +30,8 @@ bool HologramSIMCOM::begin(const int baud) {
         Serial.begin(baud);
         while(!Serial); // wait for Serial to be ready
     }
-    serialHologram.begin(baud);
-    while(!serialHologram); // wait for Serial to be ready
+    //serialHologram.begin(baud);
+    //while(!serialHologram); // wait for Serial to be ready
     _MODEMSTATE = 1; // set state as available
 
     // RUN MODEM BEGIN AT COMMANDS
@@ -99,6 +99,7 @@ bool HologramSIMCOM::begin(const int baud, const int port) {
                 return true;
         }
     }
+    return false;
 }
 
 void HologramSIMCOM::debug() {
